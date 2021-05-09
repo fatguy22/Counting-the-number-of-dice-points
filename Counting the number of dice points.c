@@ -1,27 +1,20 @@
-/*
-* ¨t¯Å¡G¸ê¤u©Ò1¦~¯Å
-* ¾Ç¸¹¡G7109056124 
-* ©m¦W¡G¸­§@¤Z 
-* Ápµ¸¹q¤l«H½c¡Gingredienter@gmail.com 
-*/ 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 int main(){
 	
-	FILE *fptr;//diceData¨t¦CÀÉ  
-	FILE *rptr;//resultÀÉ®× 
+	FILE *fptr;//diceDataç³»åˆ—æª”  
+	FILE *rptr;//resultæª”æ¡ˆ 
 	int i, zero, j;
 	char filename[20];
 	char number[4]={0};
-	int count[10]={0};//²Î­pcsvÀÉ¤º®eªº°}¦C 
+	int count[10]={0};//çµ±è¨ˆcsvæª”å…§å®¹çš„é™£åˆ— 
 	float ratio[10]={0};
 	
 	for(i=0;i<1000;i++){
 		strcpy(filename, "diceData");
-		sprintf(number, "%d", i);//sprintf¥i¥H§âint¼g¶i¦r¤¸°}¦C¸Ì­±  
+		sprintf(number, "%d", i);//sprintfå¯ä»¥æŠŠintå¯«é€²å­—å…ƒé™£åˆ—è£¡é¢  
 		int len = strlen(number);
 		
 		zero = 6 - len;
@@ -30,12 +23,12 @@ int main(){
 			strcat(filename, "0");
 		}
 		
-		strcat(filename, number);//§âÀÉ¦W±µ°_¨Ó 
+		strcat(filename, number);//æŠŠæª”åæŽ¥èµ·ä¾† 
 		strcat(filename, ".csv");
-		//¨ì¤W­±¬°¤î³£¬O§ïÀÉ¦Wªº´`Àô 
+		//åˆ°ä¸Šé¢ç‚ºæ­¢éƒ½æ˜¯æ”¹æª”åçš„å¾ªç’° 
 		
 		fptr = fopen(filename, "r");
-		/*if(fptr == NULL){//¨ì¥Ø«e¬°¤î¡A¶}ÀÉ¦¨¥\ 
+		/*if(fptr == NULL){//åˆ°ç›®å‰ç‚ºæ­¢ï¼Œé–‹æª”æˆåŠŸ 
 			printf("i=%d,No\n", i);
 		}
 		else{
@@ -56,8 +49,8 @@ int main(){
 				if((ch_bb == ',' && ch_b >= '1' && ch_b <='6' && ch == ',') ||
 				(ch_bb == ',' && ch_b >= '1' && ch_b <='6' && ch == '\n') ||
 				(ch_bb == '\n' && ch_b >= '1' && ch_b <='6' && ch == ',')){
-				//­n°O±o³B²z«e­±[´«¦æ¡F¼Æ¦r¡F³rÂI] ¥H¤Î «á­±[³rÂI¡F¼Æ¦r¡F´«¦æ] ªº±¡ªp  
-				//if±ø¥ó¤ºªº²Ä¤@¦æ¬O¦b¤@­Órow¸Ì­±¼Æªºpattern¡A²Ä¤G¡B¤T¦æ¬OÃä¬É±ø¥ó  
+				//è¦è¨˜å¾—è™•ç†å‰é¢[æ›è¡Œï¼›æ•¸å­—ï¼›é€—é»ž] ä»¥åŠ å¾Œé¢[é€—é»žï¼›æ•¸å­—ï¼›æ›è¡Œ] çš„æƒ…æ³  
+				//ifæ¢ä»¶å…§çš„ç¬¬ä¸€è¡Œæ˜¯åœ¨ä¸€å€‹rowè£¡é¢æ•¸çš„patternï¼Œç¬¬äºŒã€ä¸‰è¡Œæ˜¯é‚Šç•Œæ¢ä»¶  
 					
 					switch(ch_b){
 						case'1':
@@ -84,21 +77,21 @@ int main(){
 				}
 				else if((ch_bb == ',' && ch_b <= '9' && ch_b >= '0' && ch >= '0' && ch <= '9') || 
 				(ch_bb == '\n' && ch_b <= '9' && ch_b >= '0' && ch >= '0' && ch <= '9')){
-					count[7]++;//µn°O¿ù»~ÂI¼Æªº¦¸¼Æ 
+					count[7]++;//ç™»è¨˜éŒ¯èª¤é»žæ•¸çš„æ¬¡æ•¸ 
 				}
 				else if((ch_b == ',' && ch == ',') || (ch_b == ',' && ch == '\n')
 				|| (ch_b == '\n' && ch == ',')){
-					count[8]++;//count[8]°O¿ýªÅ®æ 
+					count[8]++;//count[8]è¨˜éŒ„ç©ºæ ¼ 
 				}
 				
 			}
 		}
 		
-		fclose(fptr);//fopenªº¤W­­¬O512­ÓÀÉ®×¡A­n°O±oÃöÀÉ  
+		fclose(fptr);//fopençš„ä¸Šé™æ˜¯512å€‹æª”æ¡ˆï¼Œè¦è¨˜å¾—é—œæª”  
 		
 	}
 	
-	for(j=1;j<=8;j++){//­pºâtotalªº¼Æ¥Ø(count[9])
+	for(j=1;j<=8;j++){//è¨ˆç®—totalçš„æ•¸ç›®(count[9])
         	count[9] += count[j];
     }
 
@@ -127,6 +120,6 @@ int main(){
 	return 0;
 	
 }
-//¹ï1­ÓÀÉ®×ªº´ú¸Õ¥¿½T
-//¹ï30­ÓÀÉ®×ªº´ú¸Õ¥¿½T 
-//¹ï50­ÓÀÉ®×ªº´ú¸Õ¥¿½T 
+//å°1å€‹æª”æ¡ˆçš„æ¸¬è©¦æ­£ç¢º
+//å°30å€‹æª”æ¡ˆçš„æ¸¬è©¦æ­£ç¢º 
+//å°50å€‹æª”æ¡ˆçš„æ¸¬è©¦æ­£ç¢º 
